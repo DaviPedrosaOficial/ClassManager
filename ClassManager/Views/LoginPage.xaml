@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClassManager.Views.LoginPage"
+             Title="LoginPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#1FFFD2" Offset="0.2"/>
+            <GradientStop Color="#1FBCFF" Offset="0.5"/>
+            <GradientStop Color="#1F4CFF" Offset="1.0"/>
+        </LinearGradientBrush>
+        
+    </ContentPage.Background>
+    
+    <VerticalStackLayout VerticalOptions="Center"
+                         Spacing="15"
+                         Margin="15">
+
+        <Label 
+            Text="Class Manager Application"
+            HorizontalOptions="Center"
+            FontSize="Title"/>
+
+        <Label 
+            Text="Login" 
+            HorizontalOptions="Center"
+            FontSize="Subtitle"/>
+
+        <Label Text="Email:"/>
+        <Entry x:Name="txt_email"/>
+
+        <Label Text="Senha:"/>
+        <Entry x:Name="txt_senha"
+               IsPassword="True"/>
+
+        <Button 
+            x:Name="btn_logar"
+            Text="Logar"
+            />
+
+        <Label 
+            Text="Ainda não esta cadastrado?"
+            HorizontalOptions="Center"/>
+        <Button 
+            x:Name="btn_cadastrar"
+            Text="Cadastrar"/>
+
+
+    </VerticalStackLayout>
+</ContentPage>
