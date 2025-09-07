@@ -66,7 +66,7 @@ namespace ClassManager.ViewModels
 
             CadastroCommand = new Command(async () =>
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new Views.CadastroPage());
+                await Application.Current.MainPage.Navigation.PushAsync(new Views.CadastroPage(dbClient));
             });
         }
     }

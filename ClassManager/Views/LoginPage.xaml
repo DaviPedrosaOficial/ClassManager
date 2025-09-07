@@ -13,7 +13,6 @@
             <GradientStop Color="#1FBCFF" Offset="0.5"/>
             <GradientStop Color="#1F4CFF" Offset="1.0"/>
         </LinearGradientBrush>
-        
     </ContentPage.Background>
     
     <VerticalStackLayout VerticalOptions="Center"
