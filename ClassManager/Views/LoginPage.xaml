@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ClassManager.ViewModels"
              x:Class="ClassManager.Views.LoginPage"
+             x:DataType="vm:LoginPageViewModel"
              Title="LoginPage"
              NavigationPage.HasNavigationBar="False">
 
@@ -29,23 +31,24 @@
             FontSize="Subtitle"/>
 
         <Label Text="Email:"/>
-        <Entry x:Name="txt_email"/>
+        <Entry Text="{Binding Username}"/>
 
         <Label Text="Senha:"/>
-        <Entry x:Name="txt_senha"
+        <Entry Text="{Binding Password}"
                IsPassword="True"/>
 
         <Button 
             x:Name="btn_logar"
             Text="Logar"
-            />
+            Command="{Binding LoginCommand}"/>
 
         <Label 
             Text="Ainda não esta cadastrado?"
             HorizontalOptions="Center"/>
         <Button 
             x:Name="btn_cadastrar"
-            Text="Cadastrar"/>
+            Text="Cadastrar"
+            Command="{Binding CadastroCommand}"/>
 
 
     </VerticalStackLayout>

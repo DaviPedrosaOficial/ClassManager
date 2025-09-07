@@ -1,15 +1,14 @@
-﻿namespace ClassManager
+﻿using ClassManager.Services;
+
+namespace ClassManager
 {
     public partial class App : Application
     {
-        public App()
+        public App(ISQLiteClientService clientService)
         {
             InitializeComponent();
-        }
 
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new Views.LoginPage());
+            MainPage = new NavigationPage(new Views.LoginPage(clientService));
         }
     }
 }

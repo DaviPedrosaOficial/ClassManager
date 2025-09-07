@@ -18,6 +18,8 @@ namespace ClassManager.Models
 
         [NotNull]
         public string Senha { get; set; }
+
+        [Ignore]
         public List<Instituicao> Instituicoes { get; set; }
     }
 }

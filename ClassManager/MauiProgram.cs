@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using ClassManager.Services;
+using Microsoft.Extensions.Logging;
 
 namespace ClassManager
 {
@@ -16,7 +17,8 @@ namespace ClassManager
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Services.AddSingleton<ISQLiteClientService, SQLiteClientService>();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
