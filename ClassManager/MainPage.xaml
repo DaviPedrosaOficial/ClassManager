@@ -15,26 +15,45 @@
         </LinearGradientBrush>
     </ContentPage.Background>
 
-    <ScrollView>
-
-        <Grid RowDefinitions="*, 4*, *"
+    <Grid RowDefinitions="50, 3*, *"
               Margin="15"
               Padding="10">
 
-            <Label Text="Minhas Instituições :"
+        <Label Text="Minhas Instituições :"
                    FontSize="Subtitle"
                    FontAttributes="Bold"/>
 
-            <Border>
-                <CollectionView 
-            </Border>
+        <Border Grid.Row="1"
+               BackgroundColor="Transparent"
+                Stroke="#1F4CFF"
+                StrokeThickness="2">
+            <CollectionView x:Name="cv_instituicoes">
+                <CollectionView.EmptyView>
+
+                    <Label Text="Você ainda não possui instituições cadastradas"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontAttributes="Bold"
+                           Margin="10"/>
+
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </Border>
+
+        <VerticalStackLayout Margin="0, 20"
+                             Spacing="15"
+                             Grid.Row="2">
+
+            <Button Text="Adicionar instituição"
+                    TextColor="Black"
+                    FontAttributes="Bold"/>
 
             <Button Text="Deslogar"
-                    Grid.Row="2"
-                    HeightRequest="40"/>
+                    TextColor="Black"
+                    FontAttributes="Bold"/>
 
-        </Grid>
+        </VerticalStackLayout>
 
-    </ScrollView>
+    </Grid>
 
 </ContentPage>
