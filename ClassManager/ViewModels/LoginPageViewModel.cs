@@ -50,7 +50,7 @@ namespace ClassManager.ViewModels
                         if (user != null)
                         {
                             await Application.Current.MainPage.DisplayAlert("Success", "Login realizado com sucesso!", "OK");
-                            Application.Current.MainPage = new NavigationPage(new MainPage());
+                            Application.Current.MainPage = new NavigationPage(new MainPage(dbClient, user));
                         }
                         else
                         {

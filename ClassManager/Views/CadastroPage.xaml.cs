@@ -9,7 +9,7 @@ public partial class CadastroPage : ContentPage
 	{
 		_clientService = clientService;
 		InitializeComponent();
-        BindingContext = new ViewModels.CadastroPageViewModel(clientService);
+        BindingContext = new ViewModels.CadastroPageViewModel(_clientService);
 	}
 
 	protected override async void OnAppearing()

@@ -48,11 +48,13 @@
 
             <Button Text="Adicionar instituição"
                     TextColor="Black"
-                    FontAttributes="Bold"/>
+                    FontAttributes="Bold"
+                    Command="{Binding RedirecionarPaginaAddInstituicao}"/>
 
             <Button Text="Deslogar"
                     TextColor="Black"
-                    FontAttributes="Bold"/>
+                    FontAttributes="Bold"
+                    Command="{Binding DeslogarUsuario}"/>
 
         </VerticalStackLayout>
 
