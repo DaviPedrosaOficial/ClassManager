@@ -4,7 +4,7 @@ namespace ClassManager.Views;
 
 public partial class CadastroPage : ContentPage
 {
-	private readonly Services.ISQLiteClientService _clientService;
+	private readonly ISQLiteClientService _clientService;
     public CadastroPage(ISQLiteClientService clientService)
 	{
 		_clientService = clientService;

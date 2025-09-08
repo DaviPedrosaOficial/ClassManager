@@ -23,7 +23,7 @@ namespace ClassManager.Services
 
         private async Task SetUpDb()
         {
-            if (_dbConnection == null) // <<<<< antes estava != null
+            if (_dbConnection == null) 
             {
                 string path = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),

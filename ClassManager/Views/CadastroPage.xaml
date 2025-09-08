@@ -4,7 +4,9 @@
              xmlns:vm="clr-namespace:ClassManager.ViewModels"
              x:DataType="vm:CadastroPageViewModel"
              x:Class="ClassManager.Views.CadastroPage"
-             Title="CadastroPage">
+             Title="Página de Cadastro">
+
+
     <ContentPage.Background>
         <LinearGradientBrush>
             <GradientStop Color="#1FFFD2" Offset="0.2"/>
@@ -41,6 +43,7 @@
                IsPassword="True"/>
         <Button 
             x:Name="btn_cadastrar"
+            Margin="0,15"
             Text="Cadastrar"
             Command="{Binding Cadastrar}"/>
         
