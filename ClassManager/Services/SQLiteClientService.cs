@@ -31,10 +31,9 @@ namespace ClassManager.Services
 
                 _dbConnection = new SQLiteAsyncConnection(path);
 
-                // Crie as tabelas necessárias
                 await _dbConnection.CreateTableAsync<Models.Client>();
-                // Quando for usar, crie também a de Instituicao:
-                // await _dbConnection.CreateTableAsync<Models.Instituicao>();
+
+                await _dbConnection.CreateTableAsync<Models.Instituicao>();
             }
         }
 
@@ -48,6 +47,21 @@ namespace ClassManager.Services
         {
             await InitializeAsync();
             return await _dbConnection.Table<Models.Client>().ToListAsync();
+        }
+
+        public async Task<int> AddInstituicaoAsync(Models.Instituicao instituicao, int clientId)
+        {
+            await InitializeAsync();
+            instituicao.ClientId = clientId;
+            return await _dbConnection.InsertAsync(instituicao);
+        }
+
+        public async Task<List<Models.Instituicao>> GetInstituicoesByClientIdAsync(int clientId)
+        {
+            await InitializeAsync();
+            return await _dbConnection.Table<Models.Instituicao>()
+                                       .Where(i => i.ClientId == clientId)
+                                       .ToListAsync();
         }
     }
 }

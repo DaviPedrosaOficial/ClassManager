@@ -13,10 +13,15 @@ namespace ClassManager.Models
     public class Instituicao
     {
         [ForeignKey("Client")]
-        public int CLientId { get; set; }
+        public int ClientId { get; set; }
 
         [PrimaryKey]
         public string Nome { get; set; }
+
+        [Ignore]
+        public Client Client { get; set; }
+
+        [Ignore]
         public List<Turma> Turmas { get; set; }
         public double MediaNotas { get; set; }
         public double MediaFrequencia { get; set; }
