@@ -26,5 +26,6 @@ namespace ClassManager.Models
 
         public double MediaNotas { get; set; }
         public double MediaFrequencia { get; set; }
+
     }
 }

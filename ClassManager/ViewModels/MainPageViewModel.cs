@@ -11,13 +11,18 @@ namespace ClassManager.ViewModels
 {
     public partial class MainPageViewModel : ObservableObject
     {
+        public readonly ISQLiteClientService _clientService;
+
         private readonly Client _clientLogado;
+        public Client ClientLogado => _clientLogado;
 
         public Command RedirecionarPaginaAddInstituicao { get; }
         public Command DeslogarUsuario { get; }
+        public Command ItemSelecionadoCommand { get; }
 
         public MainPageViewModel(ISQLiteClientService clientService, Client clientLogado)
         {
+            _clientService = clientService;
             _clientLogado = clientLogado;
 
             RedirecionarPaginaAddInstituicao = new Command(async () =>
@@ -35,6 +40,21 @@ namespace ClassManager.ViewModels
                     App.Current.MainPage = new Views.LoginPage(clientService);
                 }
             });
+
+            ItemSelecionadoCommand = new Command<object>(async (args) =>
+            {
+                if (args is SelectionChangedEventArgs e)
+                {
+                    var instituicaoSelecionada = e.CurrentSelection.FirstOrDefault() as Instituicao;
+                    if (instituicaoSelecionada != null)
+                    {
+                        await App.Current.MainPage.Navigation.PushAsync(
+                            new Views.InstituicaoPage(_clientService, instituicaoSelecionada)
+                        );
+                    }
+                }
+            });
+
         }
     }
 }

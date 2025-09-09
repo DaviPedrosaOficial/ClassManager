@@ -46,6 +46,7 @@ namespace ClassManager.ViewModels
                 {
                     await clientService.AddInstituicaoAsync(novaInstituicao, _clientLogado.Id);
                     await Application.Current.MainPage.DisplayAlert("Sucesso", "Instituição cadastrada com sucesso!", "OK");
+
                     NomeInstituicao = string.Empty;
                     await Application.Current.MainPage.Navigation.PopAsync();
                 }

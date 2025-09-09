@@ -29,7 +29,8 @@
                BackgroundColor="Transparent"
                 Stroke="#1F4CFF"
                 StrokeThickness="2">
-            <CollectionView x:Name="cv_instituicoes">
+            <CollectionView x:Name="cv_instituicoes"
+                            SelectionChanged="{Binding ItemSelecionadoCommand}">
                 <CollectionView.EmptyView>
 
                     <Label Text="Você ainda não possui instituições cadastradas"
@@ -39,6 +40,23 @@
                            Margin="10"/>
 
                 </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="1,2"
+                                HorizontalOptions="Fill"
+                                BackgroundColor="#1FBCFF"
+                                Stroke="#1F4CFF"
+                                StrokeThickness="2">
+                            
+                            <Label Text="{Binding Nome}"
+                               FontSize="Medium"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"
+                               Margin="10"/>
+                            
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
             </CollectionView>
         </Border>
 
