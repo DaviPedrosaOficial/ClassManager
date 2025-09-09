@@ -6,13 +6,11 @@ namespace ClassManager.Views;
 public partial class CadastroInstituicao : ContentPage
 {
 	private readonly ISQLiteClientService _clientService;
-	private readonly Client _clientLogado;
     public CadastroInstituicao(ISQLiteClientService clientService, Client clientLogado)
 	{
-        _clientLogado = clientLogado;
         _clientService = clientService;
         InitializeComponent();
-		BindingContext = new ViewModels.CadastroInstituicaoViewModel(_clientService, _clientLogado);
+		BindingContext = new ViewModels.CadastroInstituicaoViewModel(_clientService, clientLogado);
     }
 
 	protected override async void OnAppearing() 

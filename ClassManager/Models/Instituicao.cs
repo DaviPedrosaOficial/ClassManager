@@ -23,6 +23,7 @@ namespace ClassManager.Models
 
         [Ignore]
         public List<Turma> Turmas { get; set; }
+
         public double MediaNotas { get; set; }
         public double MediaFrequencia { get; set; }
     }
