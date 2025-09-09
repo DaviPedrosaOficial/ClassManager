@@ -11,11 +11,15 @@ namespace ClassManager.ViewModels
 {
     public partial class MainPageViewModel : ObservableObject
     {
+        private readonly Client _clientLogado;
+
         public Command RedirecionarPaginaAddInstituicao { get; }
         public Command DeslogarUsuario { get; }
 
         public MainPageViewModel(ISQLiteClientService clientService, Client clientLogado)
         {
+            _clientLogado = clientLogado;
+
             RedirecionarPaginaAddInstituicao = new Command(async () =>
             {
                 await App.Current.MainPage.Navigation.PushAsync(new Views.CadastroInstituicao(clientService, clientLogado));
@@ -26,10 +30,11 @@ namespace ClassManager.ViewModels
                 bool confirmar = await App.Current.MainPage.DisplayAlert("Confirmação", "Deseja realmente deslogar?", "Sim", "Não");
                 if (confirmar)
                 {
-                    // Navega de volta para a página de login
+                    Preferences.Remove("_clientLogado");
+
                     App.Current.MainPage = new Views.LoginPage(clientService);
                 }
-            }); 
+            });
         }
     }
 }

@@ -46,11 +46,11 @@ namespace ClassManager.ViewModels
                     else
                     {
                         List<Client> clients = await dbClient.GetClientsAsync();
-                        var user = clients.FirstOrDefault(c => c.Email == Username && c.Senha == Password);
-                        if (user != null)
+                        var usuario = clients.FirstOrDefault(c => c.Email == Username && c.Senha == Password);
+                        if (usuario != null)
                         {
                             await Application.Current.MainPage.DisplayAlert("Success", "Login realizado com sucesso!", "OK");
-                            Application.Current.MainPage = new NavigationPage(new MainPage(dbClient, user));
+                            Application.Current.MainPage = new NavigationPage(new MainPage(dbClient, usuario));
                         }
                         else
                         {
