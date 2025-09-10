@@ -27,7 +27,7 @@ namespace ClassManager.Services
             {
                 string path = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                    "classmanager.db3");
+                    "classmanager.db4");
 
                 _dbConnection = new SQLiteAsyncConnection(path);
 

@@ -30,7 +30,8 @@
                 Stroke="#1F4CFF"
                 StrokeThickness="2">
             <CollectionView x:Name="cv_instituicoes"
-                            SelectionChanged="{Binding ItemSelecionadoCommand}">
+                            ItemsSource="{Binding Instituicoes}"
+                            SelectionChangedCommand="{Binding ItemSelecionadoCommand}">
                 <CollectionView.EmptyView>
 
                     <Label Text="Você ainda não possui instituições cadastradas"
@@ -53,7 +54,12 @@
                                FontAttributes="Bold"
                                HorizontalTextAlignment="Center"
                                Margin="10"/>
-                            
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding BindingContext.ItemSelecionadoCommand, Source={x:Reference cv_instituicoes}}"
+                                    CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
+
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -12,10 +12,12 @@ namespace ClassManager.Models
     [Table("Instituicoes")]
     public class Instituicao
     {
+        [PrimaryKey]
+        public int ID { get; set; }
+
         [ForeignKey("Client")]
         public int ClientId { get; set; }
 
-        [PrimaryKey]
         public string Nome { get; set; }
 
         [Ignore]

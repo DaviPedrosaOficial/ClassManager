@@ -3,6 +3,7 @@ using ClassManager.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,14 +17,18 @@ namespace ClassManager.ViewModels
         private readonly Client _clientLogado;
         public Client ClientLogado => _clientLogado;
 
+        [ObservableProperty]
+        private ObservableCollection<Instituicao> instituicoes;
+
         public Command RedirecionarPaginaAddInstituicao { get; }
         public Command DeslogarUsuario { get; }
-        public Command ItemSelecionadoCommand { get; }
+        public Command<Instituicao> ItemSelecionadoCommand { get; }
 
         public MainPageViewModel(ISQLiteClientService clientService, Client clientLogado)
         {
             _clientService = clientService;
             _clientLogado = clientLogado;
+            Instituicoes = new ObservableCollection<Instituicao>();
 
             RedirecionarPaginaAddInstituicao = new Command(async () =>
             {
@@ -36,25 +41,32 @@ namespace ClassManager.ViewModels
                 if (confirmar)
                 {
                     Preferences.Remove("_clientLogado");
-
                     App.Current.MainPage = new Views.LoginPage(clientService);
                 }
             });
 
-            ItemSelecionadoCommand = new Command<object>(async (args) =>
+            ItemSelecionadoCommand = new Command<Instituicao>(async (instituicaoSelecionada) =>
             {
-                if (args is SelectionChangedEventArgs e)
+                if (instituicaoSelecionada != null)
                 {
-                    var instituicaoSelecionada = e.CurrentSelection.FirstOrDefault() as Instituicao;
-                    if (instituicaoSelecionada != null)
-                    {
-                        await App.Current.MainPage.Navigation.PushAsync(
-                            new Views.InstituicaoPage(_clientService, instituicaoSelecionada)
-                        );
-                    }
+                    await App.Current.MainPage.Navigation.PushAsync(
+                        new Views.InstituicaoPage(_clientService, instituicaoSelecionada)
+                    );
                 }
             });
 
+            Task.Run(async () => await CarregarInstituicoesAsync());
         }
+
+        public async Task CarregarInstituicoesAsync()
+        {
+            await _clientService.InitializeAsync();
+            var lista = await _clientService.GetInstituicoesByClientIdAsync(_clientLogado.Id);
+
+            Instituicoes.Clear();
+            foreach (var inst in lista)
+                Instituicoes.Add(inst);
+        }
+
     }
 }
