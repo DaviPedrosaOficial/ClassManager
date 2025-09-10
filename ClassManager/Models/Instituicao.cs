@@ -12,7 +12,7 @@ namespace ClassManager.Models
     [Table("Instituicoes")]
     public class Instituicao
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement, NotNull]
         public int ID { get; set; }
 
         [ForeignKey("Client")]
